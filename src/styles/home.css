@@ -1,0 +1,39 @@
+body {
+    background-color: rgba(0, 0, 0, 0.911);
+}
+
+h1 {
+    color: yellow;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+hr {
+    border-top: 2px solid white;
+    margin-bottom: 0;
+    margin-top: 2.5rem;
+}
+
+th,
+td {
+    color: white;
+    text-align: center;
+}
+
+button {
+    margin: 1rem;
+}
+
+p {
+    color: white;
+    margin: 0;
+}
+
+li.dropdown-item {
+    width: fit-content;
+    height: fit-content;
+}
+
+.card {
+    border: 0px;
+}
