@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-    color: yellow;
+    color: white;
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
@@ -36,4 +36,41 @@ li.dropdown-item {
 
 .card {
     border: 0px;
+}
+.card-text {
+    color: black;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fec007;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fec007;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.btn-close {
+    transition: transform .25s, opacity .25s;
+    opacity: .7;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
 }

@@ -14,9 +14,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			people: [],
-			planets: [],
-			vehicles: [],
 			peopleInfo: [],
 			planetsInfo: [],
 			vehiclesInfo: [],
@@ -47,30 +44,119 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-
-			//fetch StarWar's General Information and store it globally
-			getStarWarsInfo: (category) => {
-				fetch(`https://www.swapi.tech/api/${category}/`).then(response => response.json())
-					.then(data => {
-						let obj = {};
-						obj[category] = data.results;
-						setStore(obj);
+			// fetch StarWar People general information
+			getPeople: () => {
+				fetch(`https://www.swapi.tech/api/people/`)
+					.then(response => response.json())
+					.then((data) => {
+						const peopleUrls = data.results.map((result) => result.url);
+						//fetch Characters details
+						Promise.all(
+							peopleUrls.map((url) =>
+								fetch(url).then((response) => response.json())
+							)
+						)
+							.then((peopleData) => {
+								const charactersDetails = peopleData.map((data) => ({
+									uid: data.result.uid,
+									name: data.result.properties.name,
+									birth_year: data.result.properties.birth_year,
+									gender: data.result.properties.gender,
+									height: data.result.properties.height,
+									eye_color: data.result.properties.eye_color,
+									hair_color: data.result.properties.hair_color,
+									image: `https://starwars-visualguide.com/assets/img/characters/${data.result.uid}.jpg`,
+									description1: `Height: ${data.result.properties.height} cm`,
+									description2: `Eye Color: ${data.result.properties.eye_color}`,
+									description3: `Hair Color: ${data.result.properties.hair_color}`,
+								}));
+								setStore({ peopleInfo: charactersDetails });
+							})
+							.catch(err => {
+								console.error('Error fetching character details', err);
+								throw err;
+							});
 					})
-					.catch(err => err)
+					.catch(err => {
+						console.error('Error fetching people urls', err);
+						throw err;
+					});
 			},
-			//fetch StarWar Characters and store it globally
-			getPeople: (id) => {
-				fetch(`https://www.swapi.tech/api/people/${id}`).then(response => response.json())
-				.then((data) => {setStore({ peopleInfo: data?.result.properties })})
-				.catch(err => err)
+			// fetch StarWar Planets general information
+			getPlanets: () => {
+				fetch(`https://www.swapi.tech/api/planets/`)
+					.then(response => response.json())
+					.then((data) => {
+						const planetsUrls = data.results.map((result) => result.url);
+						//fetch Planets details
+						Promise.all(
+							planetsUrls.map((url) =>
+								fetch(url).then((response) => response.json())
+							)
+						)
+							.then((peopleData) => {
+								const planetsDetails = peopleData.map((data) => ({
+									uid: data.result.uid,
+									name: data.result.properties.name,
+									population: data.result.properties.population,
+									climate: data.result.properties.climate,
+									terrain: data.result.properties.terrain,
+									gravity: data.result.properties.gravity,
+									orbital_period: data.result.properties.orbital_period,
+									image: `https://starwars-visualguide.com/assets/img/planets/${data.result.uid}.jpg`,
+									description1: `Population: ${data.result.properties.population}`,
+									description2: `Climate: ${data.result.properties.climate}`,
+									description3: `Terrain: ${data.result.properties.terrain}`,
+								}));
+								setStore({ planetsInfo: planetsDetails });
+							})
+							.catch(err => {
+								console.error('Error fetching planet details', err);
+								throw err;
+							})
+					})
+					.catch(err => {
+						console.error('Error fetching planets urls', err);
+						throw err;
+					})
 			},
-			//fetch StarWar Vehicles and store it globally
-			getVehicles: (id) => {
-				fetch(`https://www.swapi.tech/api/vehicles/${id}`).then(response => response.json()).then(data => setStore({ vehiclesInfo: data?.result.properties })).catch(err => err)
-			},
-			//fetch StarWar Planets and store it globally
-			getPlanets: (id) => {
-				fetch(`https://www.swapi.tech/api/planets/${id}`).then(response => response.json()).then(data => setStore({ planetsInfo: data?.result.properties })).catch(err => err)
+			// fetch StarWar Vehicles general information
+			getVehicles: () => {
+				fetch(`https://www.swapi.tech/api/vehicles/`)
+					.then(response => response.json())
+					.then((data) => {
+						const vehiclesUrls = data.results.map((result) => result.url);
+						//fetch Vehicles details
+						Promise.all(
+							vehiclesUrls.map((url) =>
+								fetch(url).then((response) => response.json())
+							)
+						)
+							.then((vehicleData) => {
+								const vehiclesDetails = vehicleData.map((data) => ({
+									uid: data.result.uid,
+									name: data.result.properties.model,
+									manufacturer: data.result.properties.manufacturer,
+									vehicle_class: data.result.properties.vehicle_class,
+									cargo_capacity: data.result.properties.cargo_capacity,
+									max_atmosphering_speed: data.result.properties.max_atmosphering_speed,
+									length: data.result.properties.length,
+									image: `https://starwars-visualguide.com/assets/img/vehicles/${data.result.uid}.jpg`,
+									description1: `Model: ${data.result.properties.model}`,
+									description2: `Manufacturer: ${data.result.properties.manufacturer}`,
+									description3: `Vehicle Class: ${data.result.properties.vehicle_class}`,
+								}));
+								setStore({ vehiclesInfo: vehiclesDetails });
+							})
+							.catch(err => {
+								console.error('Error fetching vehicle details', err);
+								throw err;
+							})
+					})
+					.catch(err => {
+						console.error('Error fetching vehicle urls', err);
+						throw err;
+					})
 			},
 			//add selectedItem to favorites' list
 			addFavorites: (selectedItem) => {
@@ -85,7 +171,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favorites: listOfFavorites.filter((item) => item !== selectedFavorite) });
 			}
 		}
-	};
+	}
 };
 
 export default getState;

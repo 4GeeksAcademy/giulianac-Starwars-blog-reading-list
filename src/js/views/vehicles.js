@@ -1,21 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router';
 import { Context } from '../store/appContext.js';
 
 const Vehicles = () => {
   const { store, actions } = useContext(Context);
   const { idCard } = useParams();
+  const vehiclesDetails = store.vehiclesInfo.find(vehicle => vehicle.uid === idCard);
 
-  useEffect(() => {
-    actions.getVehicles(idCard);
-  }, [])
+  if (!vehiclesDetails) {
+    return <div className="loader">Loading...</div>;
+  }
 
   return (
     <>
       <div className="container mt-5 d-flex">
-        <img src={`https://starwars-visualguide.com/assets/img/vehicles/${idCard}.jpg`} className="rounded mx-2" style={{ width: "18rem" }} alt="Cool looking character"></img>
+        <img src={vehiclesDetails.image} className="rounded mx-2" style={{ width: "18rem" }} alt="Cool looking character"></img>
         <div className="mx-2 text-center">
-          <h1 className="text-light mt-0">{store.vehiclesInfo ? store.vehiclesInfo.model : "loading..."}</h1>
+          <h1 className="text-light mt-0">{vehiclesDetails.name}</h1>
           <p className="character-description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
         </div>
       </div>
@@ -34,12 +35,12 @@ const Vehicles = () => {
           </thead>
           <tbody>
             <tr>
-              <td>{store.vehiclesInfo ? store.vehiclesInfo.model : "loading..."}</td>
-              <td>{store.vehiclesInfo ? store.vehiclesInfo.vehicle_class : "loading..."}</td>
-              <td>{store.vehiclesInfo ? store.vehiclesInfo.manufacturer : "loading..."}</td>
-              <td>{store.vehiclesInfo ? store.vehiclesInfo.max_atmosphering_speed : "loading..."}</td>
-              <td>{store.vehiclesInfo ? store.vehiclesInfo.cargo_capacity : "loading..."}</td>
-              <td>{store.vehiclesInfo ? store.vehiclesInfo.length : "loading..."}</td>
+              <td>{vehiclesDetails.name}</td>
+              <td>{vehiclesDetails.vehicle_class}</td>
+              <td>{vehiclesDetails.manufacturer}</td>
+              <td>{vehiclesDetails.max_atmosphering_speed}</td>
+              <td>{vehiclesDetails.cargo_capacity}</td>
+              <td>{vehiclesDetails.length}</td>
             </tr>
           </tbody>
         </table>
