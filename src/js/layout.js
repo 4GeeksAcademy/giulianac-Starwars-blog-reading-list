@@ -33,7 +33,6 @@ const Layout = () => {
 						<Route path="/vehicles/:idCard" element={<Vehicles />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
-					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

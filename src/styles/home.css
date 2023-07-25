@@ -34,11 +34,28 @@ li.dropdown-item {
     height: fit-content;
 }
 
+.details-text {
+   color:#fec007;
+   font-weight: bold;
+}
+
 .card {
     border: 0px;
 }
+
+.card-img-top {
+    aspect-ratio: 1/1;
+}
+
 .card-text {
     color: black;
+    text-align: left;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ::-webkit-scrollbar {

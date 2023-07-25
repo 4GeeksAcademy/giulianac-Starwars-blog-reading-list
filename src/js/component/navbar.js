@@ -13,7 +13,7 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 					<button type="button" className="btn btn-outline-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-						<i className="far fa-heart"></i> {store.favorites.length}
+						<i className="far fa-heart"></i> {store.favorites.length }
 					</button>
 					<ul className="dropdown-menu dropdown-menu-end">
 						{store.favorites.map(
