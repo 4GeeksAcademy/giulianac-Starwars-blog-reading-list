@@ -6,7 +6,7 @@ import star_wars_logo from '../../img/star_wars_logo.png';
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+		<nav className="navbar navbar-light mb-3">
 			<div className="container-fluid">
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1"><img src={star_wars_logo} style={{height:"5rem"}}/></span>

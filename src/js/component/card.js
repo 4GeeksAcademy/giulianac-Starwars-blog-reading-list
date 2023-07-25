@@ -13,7 +13,7 @@ const Card = ({ character, uid, category }) => {
         <div className="card mb-1 mx-2 h-100" style={{ width: "18rem" }}>
             <img src={imageToDisplay} className="card-img-top" alt="A Picture From Far Far Away" />
             <div className="card-body d-flex justify-content-between flex-column">
-                <h5 className="card-title">{character.name}</h5>
+                <h4 className="card-title">{character.name}</h4>
                 {(category === "people") ?
                     (<><p className="card-text">{character.description1}</p>
                         <p className="card-text">{character.description2}</p>
@@ -28,8 +28,8 @@ const Card = ({ character, uid, category }) => {
                     )
                 }
                 <div className="card-buttons d-flex">
-                    <Link to={`/${category}/${uid}`}><button className="btn btn-primary">Learn More!</button></Link>
-                    <button className="btn btn-warning" onClick={() => { actions.addFavorites(character.name) }}><i className="text-white far fa-heart"></i></button>
+                    <Link to={`/${category}/${uid}`}><button className="btn btn-primary btn-more">Learn More!</button></Link>
+                    <button className="btn btn-danger btn-add-favorite" onClick={() => { actions.addFavorites(character.name) }}><i className="text-white far fa-heart"></i></button>
                 </div>
             </div>
         </div >

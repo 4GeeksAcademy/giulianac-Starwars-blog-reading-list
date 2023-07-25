@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap');
+
 body {
     background-color: rgba(0, 0, 0, 0.911);
 }
 
 h1 {
+    font-family: 'Tektur', cursive;
     color: white;
     margin-bottom: 2rem;
     margin-top: 2rem;
+}
+
+h4 {
+    font-family: 'Tektur', cursive;
 }
 
 hr {
@@ -14,7 +21,10 @@ hr {
     margin-top: 2.5rem;
 }
 
-th,
+th {
+    text-align: center;
+}
+
 td {
     color: white;
     text-align: center;
@@ -35,8 +45,8 @@ li.dropdown-item {
 }
 
 .details-text {
-   color:#fec007;
-   font-weight: bold;
+    color: #fec007;
+    font-weight: bold;
 }
 
 .card {
@@ -56,6 +66,10 @@ li.dropdown-item {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.navbar {
+    background-color: rgba(248, 249, 250, 1);
 }
 
 ::-webkit-scrollbar {
@@ -90,4 +104,14 @@ li.dropdown-item {
 .btn-close:hover {
     opacity: 1;
     transform: rotate(90deg);
+}
+
+.btn-add-favorite:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.btn-more:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
