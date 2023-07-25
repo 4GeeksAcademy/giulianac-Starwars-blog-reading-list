@@ -44,6 +44,11 @@ li.dropdown-item {
     height: fit-content;
 }
 
+.details-title {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
 .details-text {
     color: #fec007;
     font-weight: bold;
@@ -51,6 +56,10 @@ li.dropdown-item {
 
 .card {
     border: 0px;
+}
+
+.card:hover {
+    transform: translateY(-3%);
 }
 
 .card-img-top {

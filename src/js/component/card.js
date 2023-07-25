@@ -10,7 +10,7 @@ const Card = ({ character, uid, category }) => {
     const imageToDisplay = uid === "1" && category === "planets" ? placeholderImg : `https://starwars-visualguide.com/assets/img/${(category === "people" ? "characters" : category)}/${uid}.jpg`;
 
     return (
-        <div className="card mb-1 mx-2 h-100" style={{ width: "18rem" }}>
+        <div className="card mb-2 mx-2 h-100" style={{ width: "18rem" }}>
             <img src={imageToDisplay} className="card-img-top" alt="A Picture From Far Far Away" />
             <div className="card-body d-flex justify-content-between flex-column">
                 <h4 className="card-title">{character.name}</h4>
